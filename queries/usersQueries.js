@@ -13,7 +13,11 @@ const getUserById = (id) => {
 }
 
 const insertAllUsers = () => {
+  try {
 
+  } catch (error) {
+
+  }
 }
 
 module.exports = {
