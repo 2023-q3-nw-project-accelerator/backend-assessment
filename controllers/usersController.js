@@ -4,8 +4,13 @@ const { getAllUsers, getUserById } = require('../queries/usersQueries');
 const usersController = express.Router();
 
 usersController.get('/', (req, res) => {
-  users = getAllUsers() || [];
-  res.status(200).json({ data: users });
+  try {
+    users = getAllUsers() || [];
+    res.status(200).json({ data: users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 usersController.get('/:id', (req, res) => {
@@ -14,7 +19,7 @@ usersController.get('/:id', (req, res) => {
   if (user) {
     res.status(200).json({ data: user });
   } else {
-    res.status(404).json({ error: `User with id ${id} not found`});
+    res.status(404).json({ error: `User with id ${id} not found` });
   }
 })
 

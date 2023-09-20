@@ -8,8 +8,12 @@ const idToUserIndex = usersData.reduce((index, user) => {
 
 const getAllUsers = () => usersData;
 
-const getUserById =(id) => {
+const getUserById = (id) => {
   return idToUserIndex[id];
+}
+
+const insertAllUsers = () => {
+
 }
 
 module.exports = {
