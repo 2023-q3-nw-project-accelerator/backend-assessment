@@ -1,11 +1,4 @@
 const db = require("./db-config");
-const usersData = require('../usersData.json');
-
-const idToUserIndex = usersData.reduce((index, user) => {
-  const { id } = user;
-  index[id] = user;
-  return index;
-}, {});
 
 const getAllUsers = async () => {
   try {
