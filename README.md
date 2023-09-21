@@ -2,7 +2,7 @@
 
 ## My deployed API URL is:
 
-https://mike-backend-assessment.onrender.com/users/100
+https://mike-backend-assessment.onrender.com
 
 ## Getting started
 
