@@ -1,15 +1,15 @@
-const usersData = require('../usersData.json');
+const db = require("../db")
 
 const idToUserIndex = usersData.reduce((index, user) => {
-  const { id } = user;
-  index[id] = user;
-  return index;
-}, {});
+  const { id } = user
+  index[id] = user
+  return index
+}, {})
 
-const getAllUsers = () => usersData;
+const getAllUsers = () => usersData
 
-const getUserById =(id) => {
-  return idToUserIndex[id];
+const getUserById = (id) => {
+  return idToUserIndex[id]
 }
 
 module.exports = {
