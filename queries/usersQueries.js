@@ -1,12 +1,12 @@
 const db = require("../db")
 
-const idToUserIndex = usersData.reduce((index, user) => {
+const idToUserIndex = db.usersData.reduce((index, user) => {
   const { id } = user
   index[id] = user
   return index
 }, {})
 
-const getAllUsers = () => usersData
+const getAllUsers = () => db.usersData
 
 const getUserById = (id) => {
   return idToUserIndex[id]
