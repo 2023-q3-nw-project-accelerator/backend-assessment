@@ -8,7 +8,7 @@ usersController.get("/", async (req, res) => {
     const users = (await getAllUsers()) || [];
     return res.status(200).json({ data: users });
   } catch (err) {
-    response.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -22,7 +22,7 @@ usersController.get("/:id", async (req, res) => {
     }
     res.status(404).json({ error: `User with id ${id} not found` });
   } catch (err) {
-    response.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
