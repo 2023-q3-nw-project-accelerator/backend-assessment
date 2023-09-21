@@ -6,10 +6,14 @@ const idToUserIndex = db.usersData.reduce((index, user) => {
   return index
 }, {})
 
-const getAllUsers = () => db.usersData
+const getAllUsers = async () => {
+  const users = await db.any("SELECT * FROM users")
+  return users
+}
 
-const getUserById = (id) => {
-  return idToUserIndex[id]
+const getUserById = async (id) => {
+  const userId = await db.oneOrNone("SELECT * FROM users WHERE id = $1", [id])
+  return userId
 }
 
 module.exports = {
