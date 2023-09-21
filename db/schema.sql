@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
-    age varchar(255),
+    age INT,
     name varchar(255), 
     company varchar(255),
     country varchar(255),
