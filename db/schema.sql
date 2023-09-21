@@ -8,6 +8,6 @@ CREATE TABLE users (
     country VARCHAR(255),
     photo VARCHAR(255),
     about TEXT,
-    latitude FLOAT(9, 6),
-    longitude FLOAT(9, 6)
+    latitude FLOAT(24),
+    longitude FLOAT(24)
 );
