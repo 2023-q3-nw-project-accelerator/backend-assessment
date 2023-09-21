@@ -1,4 +1,4 @@
-const usersData = require("../db");
+const db = require("../db");
 
 const getAllUsers = async () => {
   const users = await db.any("SELECT * FROM users");
