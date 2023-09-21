@@ -1,7 +1,8 @@
 # Backend deployment and database challenge
 
 ## My deployed API URL is:
-(Paste your render URL here)
+
+https://backend-assessment-daniel.onrender.com/
 
 ## Getting started
 
