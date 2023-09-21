@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
   res.status(200).json({ data: "Service is running " });
 });
 
+// Remove This!!!!
 app.get("/tests", async (request, response) => {
   try {
     const tests = await db.any("SELECT * FROM users");
