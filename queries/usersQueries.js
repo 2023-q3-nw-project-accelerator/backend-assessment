@@ -1,3 +1,4 @@
+const db = require("./db-config");
 const usersData = require('../usersData.json');
 
 const idToUserIndex = usersData.reduce((index, user) => {
@@ -10,14 +11,6 @@ const getAllUsers = () => usersData;
 
 const getUserById = (id) => {
   return idToUserIndex[id];
-}
-
-const insertAllUsers = () => {
-  try {
-
-  } catch (error) {
-
-  }
 }
 
 module.exports = {
