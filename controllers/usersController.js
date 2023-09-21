@@ -14,12 +14,17 @@ usersController.get('/', async (req, res) => {
 });
 
 usersController.get('/:id', async (req, res) => {
-  const { id } = req.params;
-  user = await getUserById(id);
-  if (user) {
-    res.status(200).json({ data: user });
-  } else {
-    res.status(404).json({ error: `User with id ${id} not found` });
+  try {
+    const { id } = req.params;
+    let user = await getUserById(id);
+    if (user === false) {
+      res.status(404).json({ error: `User with id ${id} not found` });
+    } else {
+      res.status(200).json({ data: user });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
   }
 })
 
