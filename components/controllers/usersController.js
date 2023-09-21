@@ -4,30 +4,25 @@ const { getAllUsers, getUserById } = require("../queries/usersQueries");
 const usersController = express.Router();
 
 usersController.get("/", async (req, res) => {
-  try{
-    users = getAllUsers() || [];
-    res.status(200).json({ data: users });
+  try {
+    const users = (await getAllUsers()) || [];
+    return res.status(200).json({ data: users });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  catch (err){
-    res.status(500).json({error: err.message})
-  }
-  
 });
 
 usersController.get("/:id", async (req, res) => {
-  try{
+  try {
     const { id } = req.params;
-    user = getUserById(id);
+    const user = await getUserById(id);
     if (user) {
-      res.status(200).json({ data: user });
-    } else {
-      res.status(404).json({ error: `User with id ${id} not found` });
+      return res.status(200).json({ data: user });
     }
+    res.status(404).json({ error: `User with id ${id} not found` });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-  catch(err){
-    res.status(500).json({error: err.message})
-  }
-  
 });
 
 module.exports = usersController;
