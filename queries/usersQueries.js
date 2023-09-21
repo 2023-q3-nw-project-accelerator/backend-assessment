@@ -1,10 +1,10 @@
 const db = require("../db")
 
-const idToUserIndex = db.usersData.reduce((index, user) => {
-  const { id } = user
-  index[id] = user
-  return index
-}, {})
+// const idToUserIndex = db.usersData.reduce((index, user) => {
+//   const { id } = user
+//   index[id] = user
+//   return index
+// }, {})
 
 const getAllUsers = async () => {
   const users = await db.any("SELECT * FROM users")
