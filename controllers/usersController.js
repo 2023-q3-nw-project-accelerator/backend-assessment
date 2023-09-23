@@ -1,21 +1,38 @@
-const express = require('express');
-const { getAllUsers, getUserById } = require('../queries/usersQueries');
+const express = require("express");
+const { getAllUsers, getUserById } = require("../queries/usersQueries");
 
 const usersController = express.Router();
 
-usersController.get('/', (req, res) => {
-  users = getAllUsers() || [];
-  res.status(200).json({ data: users });
+// /users
+usersController.get("/", (req, res) => {
+  getAllUsers()
+    .then((users) => {
+      res.status(200).json({ data: users });
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({ error: "An error has ocurred when tries to get all users" })
+    });
 });
 
-usersController.get('/:id', (req, res) => {
+usersController.get("/:id", (req, res) => {
   const { id } = req.params;
-  user = getUserById(id);
-  if (user) {
-    res.status(200).json({ data: user });
-  } else {
-    res.status(404).json({ error: `User with id ${id} not found`});
-  }
-})
+  getUserById(id)
+    
+    .then((user) => {
+      if (!user.length) {
+        res.status(404).json({ error: "This user doesn't exist" });
+      } else { 
+        res.status(200).json({ data: user[0] });
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+      res
+        .status(500)
+        .json({ error: "An error has ocurred when tries to get the user" });
+    })
+  
+});
 
 module.exports = usersController;
