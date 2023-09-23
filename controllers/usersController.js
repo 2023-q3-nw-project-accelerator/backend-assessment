@@ -3,6 +3,7 @@ const { getAllUsers, getUserById } = require("../queries/usersQueries");
 
 const usersController = express.Router();
 
+// /users
 usersController.get("/", (req, res) => {
   getAllUsers()
     .then((users) => {
@@ -16,12 +17,22 @@ usersController.get("/", (req, res) => {
 
 usersController.get("/:id", (req, res) => {
   const { id } = req.params;
-  user = getUserById(id);
-  if (user) {
-    res.status(200).json({ data: user });
-  } else {
-    res.status(404).json({ error: `User with id ${id} not found` });
-  }
+  getUserById(id)
+    
+    .then((user) => {
+      if (!user.length) {
+        res.status(404).json({ error: "This user doesn't exist" });
+      } else { 
+        res.status(200).json({ data: user });
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+      res
+        .status(500)
+        .json({ error: "An error has ocurred when tries to get the user" });
+    })
+  
 });
 
 module.exports = usersController;
