@@ -23,7 +23,7 @@ usersController.get("/:id", (req, res) => {
       if (!user.length) {
         res.status(404).json({ error: "This user doesn't exist" });
       } else { 
-        res.status(200).json({ data: user });
+        res.status(200).json({ data: user[0] });
       }
     })
     .catch((err) => {
